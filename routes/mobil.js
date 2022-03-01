@@ -1,21 +1,34 @@
-const express = require(`express`)
-const app = express()
+const express = require(`express`);
+const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
-// call mobil controller
-let mobilController = require("../controllers/mobilController")
+let mobilControl = require("../controllers/mobilControl");
+let authorization = require("../middlewares/authorization");
+let uploadImage = require("../middlewares/uploadImage");
 
-// endpoint untuk data siswa
-app.get("/", mobilController.getDataMobil)
+//end point GET untuk menampilkan data mobil
+app.get("/", authorization.authorization, mobilControl.getDataMobil);
 
-// endpoint untuk add siswa
-app.post("/", mobilController.addDataMobil)
+//end point POST untuk menambah data mobil
+app.post(
+  "/",
+  [authorization.authorization, uploadImage.upload.single(`image`)],
+  mobilControl.addDataMobil
+);
 
-// endpoint untuk edit siswa
-app.put("/:id_mobil", mobilController.editDataMobil)
+//end point PUT untuk mengedit data mobil
+app.put(
+  "/:id_mobil",
+  [authorization.authorization, uploadImage.upload.single(`image`)],
+  mobilControl.editDataMobil
+);
 
-// endpoint untuk delete siswa
-app.delete("/:id_mobil", mobilController.deleteDataMobil)
+//end point DELETE untuk menghapus data mobil
+app.delete(
+  "/:id_mobil",
+  authorization.authorization,
+  mobilControl.deleteDataMobil
+);
 
-module.exports = app 
+module.exports = app;

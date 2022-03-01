@@ -11,24 +11,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.pelanggan, {
+        foreignKey: "id_pelanggan",
+        as: "pelanggan"
+      })
+
+      this.belongsTo(models.karyawan, {
+        foreignKey: "id_karyawan",
+        as: "karyawan"
+      })
+
+      this.belongsTo(models.mobil, {
+        foreignKey: "id_mobil",
+        as: "mobil"
+      })
     }
   }
   sewa.init({
     id_sewa:{
-      type: DataTypes.INTEGER,
+      type:DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    id_mobil: DataTypes.INTEGER,
-    id_karyawan: DataTypes.INTEGER,
-    id_pelanggan: DataTypes.INTEGER,
+    id_mobil: DataTypes.STRING,
+    id_karyawan: DataTypes.STRING,
+    id_pelanggan: DataTypes.STRING,
     tgl_sewa: DataTypes.DATE,
     tgl_kembali: DataTypes.DATE,
     total_bayar: DataTypes.DOUBLE
   }, {
     sequelize,
     modelName: 'sewa',
-    tableName: 'sewa'
+    tableName: `sewa`
   });
   return sewa;
 };

@@ -14,7 +14,7 @@ module.exports = {
       alamat_karyawan: {
         type: Sequelize.STRING
       },
-      kontak: {
+      kontak_karyawan: {
         type: Sequelize.STRING
       },
       username: {

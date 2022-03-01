@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nama_mobil: {
+      nomor_mobil: {
         type: Sequelize.STRING
       },
       merk: {
@@ -23,7 +23,7 @@ module.exports = {
       tahun_pembuatan: {
         type: Sequelize.STRING
       },
-      biaya_sewa_per_hari: {
+      biaya_sewa: {
         type: Sequelize.DOUBLE
       },
       image: {

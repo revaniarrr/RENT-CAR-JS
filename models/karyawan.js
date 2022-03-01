@@ -15,19 +15,19 @@ module.exports = (sequelize, DataTypes) => {
   }
   karyawan.init({
     id_karyawan:{
-      type: DataTypes.INTEGER,
+      type:DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     nama_karyawan: DataTypes.STRING,
     alamat_karyawan: DataTypes.STRING,
-    kontak: DataTypes.STRING,
+    kontak_karyawan: DataTypes.STRING,
     username: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'karyawan',
-    tableName: 'karyawan'
+    tableName: `karyawan`
   });
   return karyawan;
 };

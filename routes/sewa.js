@@ -3,19 +3,19 @@ const app = express()
 
 app.use(express.json())
 
-// call sewa controller
-let sewaController = require("../controllers/sewaController")
+let sewaControl = require("../controllers/sewaControl")
+let authorization = require("../middlewares/authorization")
 
-// endpoint untuk data siswa
-app.get("/", sewaController.getDataSwa)
+//end point GET untuk menampilkan data Sewa
+app.get("/", authorization.authorization, sewaControl.getDataSewa)
 
-// endpoint untuk add siswa
-app.post("/", sewaController.addDataSewa)
+//end point POST untuk menambah data Sewa
+app.post("/", authorization.authorization, sewaControl.addDataSewa)
 
-// endpoint untuk edit siswa
-app.put("/:id_sewa", sewaController.editDataSewa)
+//end point PUT untuk mengedit data Sewa
+app.put("/:id_sewa", authorization.authorization, sewaControl.editDataSewa)
 
-// endpoint untuk delete siswa
-app.delete("/:id_sewa", sewaController.deleteDataSewa)
+//end point DELETE untuk menghapus data Sewa
+app.delete("/:id_sewa", authorization.authorization, sewaControl.deleteDataSewa)
 
-module.exports = app 
+module.exports = app

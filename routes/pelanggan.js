@@ -3,19 +3,20 @@ const app = express()
 
 app.use(express.json())
 
-// call pelanggan controller
-let pelangganController = require("../controllers/pelangganController")
+let pelangganControl = require("../controllers/pelangganControl")
 
-// endpoint untuk data siswa
-app.get("/", pelangganController.getDataPelanggan)
+let authorization = require("../middlewares/authorization")
 
-// endpoint untuk add siswa
-app.post("/", pelangganController.addDataPelanggan)
+//end point GET untuk menampilkan data Pelanggan
+app.get("/", authorization.authorization, pelangganControl.getDataPelanggan)
 
-// endpoint untuk edit siswa
-app.put("/:id_pelanggan", pelangganController.editDataPelanggan)
+//end point POST untuk menambah data Pelanggan
+app.post("/", authorization.authorization, pelangganControl.addDataPelanggan)
 
-// endpoint untuk delete siswa
-app.delete("/:id_pelanggan", pelangganController.deleteDataPelanggan)
+//end point PUT untuk mengedit data Pelanggan
+app.put("/:id_pelanggan", authorization.authorization, pelangganControl.editDataPelanggan)
 
-module.exports = app 
+//end point DELETE untuk menghapus data Pelanggan
+app.delete("/:id_pelanggan", authorization.authorization, pelangganControl.deleteDataPelanggan)
+
+module.exports = app

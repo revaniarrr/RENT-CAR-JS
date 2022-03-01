@@ -9,13 +9,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_mobil: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references : {
+          model : "mobil",
+          key : "id_mobil"
+        }
       },
       id_karyawan: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references : {
+          model : "karyawan",
+          key : "id_karyawan"
+        }
       },
       id_pelanggan: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references : {
+          model : "pelanggan",
+          key : "id_pelanggan"
+        }
       },
       tgl_sewa: {
         type: Sequelize.DATE
