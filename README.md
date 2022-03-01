@@ -239,3 +239,17 @@ class CreateMahasiswaController extends Model {
 }
 module.exports = { CreateMahasiswaController }
 ```
+
+#### App Route
+
+```javascript
+class CreateMahasiswaRoute extends Controller {
+  constructor() {
+    super()
+  }
+  route() {
+    return this.post('/mhs/create', (req, res) => new CreateMahasiswaController().controller(req, res))
+  }
+}
+module.exports = { CreateMahasiswaRoute }
+```
